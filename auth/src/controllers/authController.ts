@@ -7,7 +7,7 @@ export function currentUser(req: Request, res: Response) {
   res.send("hello22");
 }
 
-export function signup(req: Request, res: Response) {
+export async function signup(req: Request, res: Response) {
   const errors = validationResult(req);
 
   if (!errors.isEmpty()) throw new RequestValidationError(errors.array());
