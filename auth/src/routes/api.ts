@@ -14,7 +14,9 @@ router.post(
       .trim()
       .isLength({ min: 4, max: 20 })
       .withMessage("Password between  4 and 20 characters are allowed"),
+    body("phone").isLength({ min: 10, max: 10 }),
   ],
+
   signup
 );
 
