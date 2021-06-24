@@ -4,6 +4,8 @@ import { RequestValidationError } from "../errors/request-validation-error";
 import { DatabaseConnectionError } from "../errors/database-connection-error";
 import { BadRequestError } from "../errors/bad-request";
 import { User } from "../models/user";
+import jwt from "jsonwebtoken";
+
 export function currentUser(req: Request, res: Response) {
   res.send("hello22");
 }
@@ -19,13 +21,29 @@ export async function signup(req: Request, res: Response) {
 
   if (userExist) throw new BadRequestError("User already exist");
 
+  //user instance
   const user = User.build({
     email,
     password,
     phone,
   });
 
+  //save user
   await user.save();
+
+  //generate JWT
+  const userJwt = jwt.sign(
+    {
+      if: user.id,
+      email: user.email,
+    },
+    process.env.JWT_KEY as string
+  );
+
+  //store jwt in session object
+  req.session = {
+    jwt: userJwt,
+  };
 
   return res.status(201).send(user);
 }
