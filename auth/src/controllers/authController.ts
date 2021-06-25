@@ -26,7 +26,7 @@ export async function signup(req: Request, res: Response) {
   //generate JWT
   const userJwt = jwt.sign(
     {
-      if: user.id,
+      id: user.id,
       email: user.email,
     },
     process.env.JWT_KEY as string
