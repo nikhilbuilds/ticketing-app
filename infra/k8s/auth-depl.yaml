@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: auth
-          image: ticketingapp/auth
+          image: nikhilkhanna03/auth:latest
           env:
             - name: JWT_KEY
               valueFrom:

@@ -19,7 +19,7 @@ app.set("trust proxy", true);
 app.use(
   cookieSession({
     signed: false,
-    secure: process.env.NODE_ENV !== "test",
+    secure: false,
   })
 );
 app.use("/api/users", apiRouter);
@@ -31,3 +31,5 @@ app.all("*", async () => {
 app.use(errorHandler);
 
 export { app };
+
+//kubectl create secret generic jwt-secret --from-literal=JWT_KEY=wg+3W9j-??m=j%Y2

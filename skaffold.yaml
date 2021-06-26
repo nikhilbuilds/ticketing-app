@@ -8,7 +8,7 @@ build:
   local:
     push: false
   artifacts:
-    - image: ticketingapp/auth
+    - image: nikhilkhanna03/auth
       context: auth
       docker:
         dockerfile: Dockerfile
