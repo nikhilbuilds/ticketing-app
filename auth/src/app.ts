@@ -3,8 +3,7 @@ import "express-async-errors";
 import { json } from "body-parser";
 import dotenv from "dotenv";
 import { apiRouter } from "./routes/api";
-import { errorHandler } from "./middleware/error-handle";
-import { NotFoundError } from "./errors/not-found-error";
+import { errorHandler, NotFoundError } from "@nk-ticketing-app/common";
 import cookieSession from "cookie-session";
 
 dotenv.config();

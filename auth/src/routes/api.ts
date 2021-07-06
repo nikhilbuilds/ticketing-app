@@ -6,8 +6,7 @@ import {
   getCurrentUser,
 } from "../controllers/authController";
 import { body } from "express-validator";
-import { validateRequest } from "../middleware/validate-request";
-import { currentUser } from "../middleware/current-user";
+import { validateRequest, currentUser } from "@nk-ticketing-app/common";
 
 const router = express.Router();
 

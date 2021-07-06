@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { BadRequestError } from "../errors/bad-request";
+import { BadRequestError } from "@nk-ticketing-app/common";
 import { PasswordManager } from "../services/passwordManager";
 import { User } from "../models/user";
 import jwt from "jsonwebtoken";
