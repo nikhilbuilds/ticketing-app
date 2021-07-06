@@ -1,0 +1,22 @@
+{
+  "name": "@nk-ticketing-app/common",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./build/index.js",
+  "types": "./build/index.d.ts",
+  "files": [
+    "build/**/*"
+  ],
+  "scripts": {
+    "build": "npm run clean && tsc",
+    "clean": "del ./build/*",
+    "pub": "git add . && git commit -m \"common updated\" &&  npm version patch && npm run build && npm publish"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "del-cli": "^4.0.0",
+    "typescript": "^4.3.5"
+  }
+}
