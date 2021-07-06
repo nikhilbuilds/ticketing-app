@@ -43,6 +43,8 @@ export async function signup(req: Request, res: Response) {
 export async function signin(req: Request, res: Response) {
   const { user, password } = req.body;
 
+  console.log(user);
+
   const existing = await User.findOne({
     $or: [{ email: user }, { phone: user }],
   });
@@ -71,7 +73,7 @@ export async function signin(req: Request, res: Response) {
 }
 
 export function getCurrentUser(req: Request, res: Response) {
-  return res.send({ currentUser: req.currentUser || null });
+  return res.send({ user: req.user || null });
 }
 
 export async function signout(req: Request, res: Response) {
