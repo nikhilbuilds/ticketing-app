@@ -7,6 +7,7 @@ import {
   NotFoundError,
   currentUser,
 } from "@nk-ticketing-app/common";
+import { newRouter } from "./routes/new";
 
 const app = express();
 app.set("trust proxy", true);
@@ -19,6 +20,8 @@ app.use(
 );
 
 app.use(currentUser);
+
+app.use(newRouter);
 
 app.all("*", async (req, res) => {
   throw new NotFoundError();
