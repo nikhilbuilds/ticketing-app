@@ -28,10 +28,6 @@ export const currentUser = (
     ) as UserPayload;
 
     req.user = payload;
-
-    console.log("common", payload);
-
-    return res.status(200).send({ user: payload });
   } catch (err) {}
 
   next();
