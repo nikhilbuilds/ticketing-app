@@ -7,8 +7,10 @@ import {
   NotFoundError,
   currentUser,
 } from "@nk-ticketing-app/common";
-import { newRouter } from "./routes/new";
-
+import { createTicketRouter } from "./routes/new";
+import { showRouter } from "./routes/show";
+import { indexTicketRouter } from "./routes";
+import { updateTicketRouter } from "./routes/update";
 const app = express();
 app.set("trust proxy", true);
 app.use(json());
@@ -18,10 +20,18 @@ app.use(
     secure: process.env.NODE_ENV !== "test",
   })
 );
-
 app.use(currentUser);
 
-app.use(newRouter);
+// app.get("/api/tickets/test", currentUser, (req, res) => {
+//   console.log(req.user);
+
+//   res.send("hellocscs");
+// });
+
+app.use(createTicketRouter);
+app.use(showRouter);
+app.use(indexTicketRouter);
+app.use(updateTicketRouter);
 
 app.all("*", async (req, res) => {
   throw new NotFoundError();

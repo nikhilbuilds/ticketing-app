@@ -1,9 +1,9 @@
 import { MongoMemoryServer } from "mongodb-memory-server";
 import mongoose from "mongoose";
-import { app } from "../app";
 import request from "supertest";
+import { app } from "../app";
 import jwt from "jsonwebtoken";
-//for global properties
+
 declare global {
   namespace NodeJS {
     interface Global {
@@ -11,9 +11,10 @@ declare global {
     }
   }
 }
+
 let mongo: any;
 beforeAll(async () => {
-  process.env.JWT_KEY = "wg+3W9j-??m=j%Y2";
+  process.env.JWT_KEY = "asdfasdf";
   process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
   mongo = new MongoMemoryServer();
@@ -38,10 +39,10 @@ afterAll(async () => {
   await mongoose.connection.close();
 });
 
-//global functions for test Env
 global.signin = () => {
+  // Build a JWT payload.  { id, email }
   const payload = {
-    id: "1lk24j124l",
+    id: new mongoose.Types.ObjectId().toHexString(),
     email: "test@test.com",
   };
 
