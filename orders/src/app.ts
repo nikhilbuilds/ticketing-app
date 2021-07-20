@@ -9,7 +9,7 @@ import {
 } from "@nk-ticketing-app/common";
 // import { createTicketRouter } from "./routes/new";
 // import { showRouter } from "./routes/show";
-// import { indexTicketRouter } from "./routes";
+import { IndexOrderRouter } from "./routes";
 // import { updateTicketRouter } from "./routes/update";
 const app = express();
 app.set("trust proxy", true);
@@ -22,15 +22,11 @@ app.use(
 );
 app.use(currentUser);
 
-// app.get("/api/tickets/test", currentUser, (req, res) => {
-//   console.log(req.user);
-
-//   res.send("hellocscs");
-// });
+app.use(IndexOrderRouter);
 
 // app.use(createTicketRouter);
 // app.use(showRouter);
-// app.use(indexTicketRouter);
+
 // app.use(updateTicketRouter);
 
 app.all("*", async (req, res) => {
