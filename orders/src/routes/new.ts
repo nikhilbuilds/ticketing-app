@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import {
   requireAuth,
   NotFoundError,
+  validateRequest,
   BadRequestError,
 } from "@nk-ticketing-app/common";
 import { body } from "express-validator";
@@ -23,6 +24,7 @@ router.post(
       .custom((input: string) => mongoose.Types.ObjectId.isValid(input))
       .withMessage("Ticket is invalid"),
   ],
+  validateRequest,
   async (req: Request, res: Response) => {
     const { ticketId } = req.body;
     const ticket = await Ticket.findById(ticketId);
@@ -49,4 +51,4 @@ router.post(
   }
 );
 
-export { router as IndexOrderRouter };
+export { router as newOrderRouter };

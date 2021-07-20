@@ -7,10 +7,10 @@ import {
   NotFoundError,
   currentUser,
 } from "@nk-ticketing-app/common";
-// import { createTicketRouter } from "./routes/new";
-// import { showRouter } from "./routes/show";
-import { IndexOrderRouter } from "./routes";
-// import { updateTicketRouter } from "./routes/update";
+import { newOrderRouter } from "./routes/new";
+import { showOrderRouter } from "./routes/show";
+import { indexOrderRouter } from "./routes";
+import { deleteOrderRouter } from "./routes/delete";
 const app = express();
 app.set("trust proxy", true);
 app.use(json());
@@ -22,12 +22,11 @@ app.use(
 );
 app.use(currentUser);
 
-app.use(IndexOrderRouter);
+app.use(indexOrderRouter);
+app.use(showOrderRouter);
+app.use(newOrderRouter);
 
-// app.use(createTicketRouter);
-// app.use(showRouter);
-
-// app.use(updateTicketRouter);
+app.use(deleteOrderRouter);
 
 app.all("*", async (req, res) => {
   throw new NotFoundError();

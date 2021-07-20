@@ -22,7 +22,7 @@ interface OrderModel extends mongoose.Model<OrderDoc> {
 
 const orderSchema = new mongoose.Schema(
   {
-    uesrId: {
+    userId: {
       type: String,
       required: true,
     },
