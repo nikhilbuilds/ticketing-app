@@ -6,7 +6,7 @@ interface Events {
   data: any;
 }
 
-export abstract class Listner<T extends Events> {
+export abstract class Listener<T extends Events> {
   protected client: Stan;
 
   constructor(client: Stan) {
