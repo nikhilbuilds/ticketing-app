@@ -23,6 +23,8 @@ router.put(
   ],
   validateRequest,
   async (req: Request, res: Response) => {
+    console.log(req.params.id);
+
     const ticket = await Ticket.findById(req.params.id);
 
     if (!ticket) throw new NotFoundError();
