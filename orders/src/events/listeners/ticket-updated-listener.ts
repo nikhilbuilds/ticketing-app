@@ -19,7 +19,9 @@ export class TicketUpdatedListener extends Listner<TicketUpdatedEvent> {
     console.log(data);
 
     //find ticket
-    const ticket = await Ticket.findById({ _id: id });
+    const ticket = await Ticket.findById({
+      _id: id,
+    });
     if (!ticket) throw new NotFoundError();
 
     ticket.set({ title, price });
