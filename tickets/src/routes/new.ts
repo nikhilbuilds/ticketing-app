@@ -6,7 +6,7 @@ import {
   validateRequest,
 } from "@nk-ticketing-app/common";
 import { Ticket } from "../models/ticketing";
-import { TicketCreatedPublisher } from "../events/ticket-created-publisher";
+import { TicketCreatedPublisher } from "../events/publishers/ticket-created-publisher";
 import { natsWrapper } from "../nats-wrapper";
 
 const router = express.Router();
@@ -24,21 +24,26 @@ router.post(
   async (req: Request, res: Response) => {
     const { title, price } = req.body;
 
-    const ticket = Ticket.build({
-      title,
-      price,
-      userId: req.user!.id,
-    });
-    await ticket.save();
+    try {
+      const ticket = Ticket.build({
+        title,
+        price,
+        userId: req.user!.id,
+      });
+      await ticket.save();
 
-    await new TicketCreatedPublisher(natsWrapper.client).publish({
-      id: ticket.id,
-      title: ticket.title,
-      price: ticket.price,
-      userId: ticket.userId,
-    });
+      new TicketCreatedPublisher(natsWrapper.client).publish({
+        id: ticket.id,
+        title: ticket.title,
+        price: ticket.price,
+        userId: ticket.userId,
+      });
 
-    res.status(201).send(ticket);
+      return res.status(201).send(ticket);
+    } catch (err) {
+      console.log(err.message);
+      return err;
+    }
   }
 );
 

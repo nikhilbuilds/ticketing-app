@@ -8,15 +8,15 @@ class NatsWrapper {
 
     return this._client;
   }
-
   connect(clusterId: string, clientId: string, url: string): Promise<void> {
+    this._client = nats.connect(clusterId, clientId, { url });
+
     return new Promise((resolve, reject) => {
-      this._client = nats.connect(clusterId, clientId, { url: url });
-      this._client.on("connect", () => {
-        console.log("connected to nats");
+      this.client.on("connect", () => {
+        console.log("Connected to NATS");
         resolve();
       });
-      this._client.on("err", (err) => {
+      this.client.on("error", (err) => {
         reject(err);
       });
     });
