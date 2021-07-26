@@ -14,15 +14,13 @@ export class TicketUpdatedListener extends Listner<TicketUpdatedEvent> {
   queueGroupName = queueGroupName;
 
   async onMessage(data: TicketUpdatedEvent["data"], msg: Message) {
-    const { id, title, price } = data;
-
-    console.log(data);
-
     //find ticket
-    const ticket = await Ticket.findById({
-      _id: id,
-    });
-    if (!ticket) throw new NotFoundError();
+
+    const ticket = await Ticket.findByEvent(data);
+
+    if (!ticket) throw new Error("Ticket not found");
+
+    const { title, price } = data;
 
     ticket.set({ title, price });
 
