@@ -18,7 +18,7 @@ export class TicketUpdatedListener extends Listner<TicketUpdatedEvent> {
 
     const ticket = await Ticket.findByEvent(data);
 
-    if (!ticket) throw new Error("Ticket not found");
+    if (!ticket) throw new NotFoundError();
 
     const { title, price } = data;
 

@@ -4,6 +4,7 @@ import {
   NotFoundError,
   NotAuthorizedError,
   validateRequest,
+  BadRequestError,
 } from "@nk-ticketing-app/common";
 import { Ticket } from "../models/ticketing";
 import { body } from "express-validator";
@@ -28,6 +29,8 @@ router.put(
     const ticket = await Ticket.findById(req.params.id);
 
     if (!ticket) throw new NotFoundError();
+
+    if (ticket.orderId) throw new BadRequestError("Ticket is already reserved");
 
     if (ticket.userId !== req.user!.id) throw new NotAuthorizedError();
 
