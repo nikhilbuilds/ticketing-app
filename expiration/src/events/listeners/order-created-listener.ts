@@ -11,6 +11,10 @@ export class OrderCreatedListener extends Listener<OrderCreatedEvent> {
   queueGroupName = "expiration-service";
 
   async onMessage(data: OrderCreatedEvent["data"], msg: Message) {
-    await expirationQueue.add({ orderId: data.id });
+    const delay = new Date(data.expiresAt).getTime() - new Date().getTime();
+
+    console.log(delay);
+
+    await expirationQueue.add({ orderId: data.id }, { delay });
   }
 }
