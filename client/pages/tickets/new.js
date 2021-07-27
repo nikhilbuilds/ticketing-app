@@ -42,10 +42,10 @@ const NewTicket = () => {
 
   return (
     <div>
-      <h1>Create a Ticket</h1>
-      <form onSubmit={onSubmit}>
+      <form className="form-create" onSubmit={onSubmit}>
+        <h1 className="h3 mb-3 font-weight-normal">Create a Ticket</h1>
         <div className="form-group">
-          <label>Title</label>
+          <label className="mt-4">Title</label>
           <input
             value={title}
             name="title"
@@ -54,7 +54,7 @@ const NewTicket = () => {
           />
         </div>
         <div className="form-group">
-          <label>Price</label>
+          <label className="mt-4">Price</label>
           <input
             value={price}
             onBlur={onBlur}
@@ -64,7 +64,7 @@ const NewTicket = () => {
           />
         </div>
         {errors}
-        <button className="btn btn-primary">Submit</button>
+        <button className="btn btn-primary mt-4">Submit</button>
       </form>
     </div>
   );

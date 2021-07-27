@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Router from "next/router";
 import useRequest from "../../hooks/use-request";
-
 export default () => {
   const [formData, setFormData] = useState({
     user: "",
@@ -36,19 +35,29 @@ export default () => {
   };
 
   return (
-    <form onSubmit={onSubmit}>
-      <h1>Sign In</h1>
-      <div className="form-group">
-        <label>Email Address / Phone Number</label>
+    <div>
+      {errors}
+      <form className="form-signin" onSubmit={onSubmit}>
+        {/* <img
+          className="mb-4"
+          src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg"
+          alt=""
+          width="72"
+          height="72"
+        /> */}
+        <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
+        <label for="inputEmail" className="sr-only">
+          Email address / Phone Number
+        </label>
         <input
           value={user}
           name="user"
           onChange={(e) => setInput(e)}
           className="form-control"
         />
-      </div>
-      <div className="form-group">
-        <label>Password</label>
+        <label for="inputPassword" className="sr-only mt-4">
+          Password
+        </label>
         <input
           value={password}
           name="password"
@@ -56,9 +65,16 @@ export default () => {
           type="password"
           className="form-control"
         />
-      </div>
-      {errors}
-      <button className="btn btn-primary">Sign In</button>
-    </form>
+        <div className="checkbox mb-3">
+          <label>
+            <input type="checkbox" value="remember-me" /> Remember me
+          </label>
+        </div>
+        <button className="btn btn-lg btn-primary btn-block" type="submit">
+          Sign in
+        </button>
+        <p className="mt-5 mb-3 text-muted">© 2017-2018</p>
+      </form>
+    </div>
   );
 };

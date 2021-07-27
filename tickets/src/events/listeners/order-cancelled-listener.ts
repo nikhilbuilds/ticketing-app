@@ -1,7 +1,7 @@
 import { Message } from "node-nats-streaming";
 import {
   Subjects,
-  Listner,
+  Listener,
   OrderCancelledEvent,
   NotFoundError,
 } from "@nk-ticketing-app/common";
@@ -9,7 +9,7 @@ import { queueGroupName } from "./queue-group-name";
 import { Ticket } from "../../models/ticketing";
 import { TicketUpdatedPublisher } from "../publishers/ticket-updated-publisher";
 
-export class OrderCancelledListener extends Listner<OrderCancelledEvent> {
+export class OrderCancelledListener extends Listener<OrderCancelledEvent> {
   readonly subject = Subjects.OrderCancelled;
   queueGroupName = queueGroupName;
 

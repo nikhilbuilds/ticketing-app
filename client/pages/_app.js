@@ -2,6 +2,8 @@ import "bootstrap/dist/css/bootstrap.css";
 
 import buildClient from "../api/build-client";
 import Header from "../components/header";
+import "../styles/form.css";
+
 const AppComponent = ({ Component, pageProps, user }) => {
   return (
     <div className="bg-dark text-light full-height" style={{ height: "100vh" }}>

@@ -40,39 +40,54 @@ export default function SignUp() {
   };
 
   return (
-    <form onSubmit={onSubmit}>
-      <h1>Sign Up</h1>
-      <div className="form-group">
-        <label>Email Address</label>
-        <input
-          value={email}
-          name="email"
-          onChange={(e) => setInput(e)}
-          className="form-control"
-        />
-      </div>
+    <form className="form-signin" onSubmit={onSubmit}>
+      {/* <img
+          className="mb-4"
+          src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg"
+          alt=""
+          width="72"
+          height="72"
+        /> */}
+      <h1 className="h3 mb-3 font-weight-normal">Please sign up</h1>
+      <label for="inputEmail" className="sr-only">
+        Email address
+      </label>
+      <input
+        value={email}
+        name="email"
+        onChange={(e) => setInput(e)}
+        className="form-control"
+      />
+      <label for="inputPassword" className="sr-only mt-4">
+        Phone
+      </label>
+      <input
+        value={phone}
+        name="phone"
+        onChange={(e) => setInput(e)}
+        className="form-control"
+      />
+      <label for="inputPassword" className="sr-only mt-4">
+        Password
+      </label>
+      <input
+        value={password}
+        name="password"
+        onChange={(e) => setInput(e)}
+        type="password"
+        className="form-control"
+      />
 
-      <div className="form-group">
-        <label>Phone</label>
-        <input
-          value={phone}
-          name="phone"
-          onChange={(e) => setInput(e)}
-          className="form-control"
-        />
+      <div className="checkbox mb-3">
+        <label>
+          <input type="checkbox" value="remember-me" /> Remember me
+        </label>
       </div>
-      <div className="form-group">
-        <label>Password</label>
-        <input
-          value={password}
-          name="password"
-          onChange={(e) => setInput(e)}
-          type="password"
-          className="form-control"
-        />
-      </div>
+      <button className="btn btn-lg btn-primary btn-block" type="submit">
+        Sign up
+      </button>
+
       {errors}
-      <button className="btn btn-primary">Sign Up</button>
     </form>
   );
 }

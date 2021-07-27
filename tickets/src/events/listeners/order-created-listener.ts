@@ -1,5 +1,5 @@
 import {
-  Listner,
+  Listener,
   OrderCreatedEvent,
   Subjects,
   NotFoundError,
@@ -9,7 +9,7 @@ import { Message } from "node-nats-streaming";
 import { Ticket } from "../../models/ticketing";
 import { TicketUpdatedPublisher } from "../publishers/ticket-updated-publisher";
 
-export class OrderCreatedListener extends Listner<OrderCreatedEvent> {
+export class OrderCreatedListener extends Listener<OrderCreatedEvent> {
   readonly subject = Subjects.OrderCreated;
   queueGroupName = queueGroupName;
 

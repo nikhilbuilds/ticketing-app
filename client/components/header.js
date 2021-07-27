@@ -7,6 +7,10 @@ export default ({ currentUser }) => {
     currentUser && { label: "Sell Tickets", href: "/tickets/new" },
     currentUser && { label: "My Orders", href: "/orders" },
     currentUser && { label: "Sign Out", href: "/auth/signout" },
+    {
+      label: "Github",
+      href: "https://github.com/nikhil-web-dev/ticketing-app",
+    },
   ]
     .filter((linkConfig) => linkConfig)
     .map(({ label, href }) => {
