@@ -7,7 +7,7 @@ import {
   NotFoundError,
   currentUser,
 } from "@nk-ticketing-app/common";
-// import { createTicketRouter } from "./routes/new";
+import { newRouter } from "./routes/new";
 // import { showRouter } from "./routes/show";
 // import { indexTicketRouter } from "./routes";
 // import { updateTicketRouter } from "./routes/update";
@@ -28,7 +28,7 @@ app.use(currentUser);
 //   res.send("hellocscs");
 // });
 
-// app.use(createTicketRouter);
+app.use(newRouter);
 // app.use(showRouter);
 // app.use(indexTicketRouter);
 // app.use(updateTicketRouter);
