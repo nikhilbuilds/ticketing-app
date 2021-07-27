@@ -1,11 +1,14 @@
 import "bootstrap/dist/css/bootstrap.css";
+
 import buildClient from "../api/build-client";
 import Header from "../components/header";
 const AppComponent = ({ Component, pageProps, user }) => {
   return (
-    <div>
+    <div className="bg-dark text-light full-height" style={{ height: "100vh" }}>
       <Header currentUser={user} />
-      <Component {...pageProps} />
+      <div className="container bg-dark">
+        <Component currentUser={user} {...pageProps} />
+      </div>
     </div>
   );
 };
@@ -16,7 +19,11 @@ AppComponent.getInitialProps = async (appContext) => {
 
   let pageProps = {};
   if (appContext.Component.getInitialProps) {
-    pageProps = await appContext.Component.getInitialProps(appContext.ctx);
+    pageProps = await appContext.Component.getInitialProps(
+      appContext.ctx,
+      client,
+      data.user
+    );
   }
 
   // console.log(pageProps);
