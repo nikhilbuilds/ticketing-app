@@ -2,7 +2,7 @@ import express, { Request, Response } from "express";
 import { body } from "express-validator";
 import querystring from "query-string";
 import axios from "axios";
-
+import { Payment } from "../models/Payment";
 import {
   validateRequest,
   requireAuth,
@@ -62,10 +62,16 @@ router.post(
     };
 
     try {
-      const resp = await axios.post(url, options.body, {
+      const resp: any = await axios.post(url, options.body, {
         headers: options.headers,
       });
 
+      const payment = Payment.build({
+        orderId: order.id,
+        paymentId: resp.data.order_id,
+      });
+
+      await payment.save();
       return res.send(resp.data.payment_link);
     } catch (err) {
       console.log(err);
@@ -74,9 +80,40 @@ router.post(
   }
 );
 
-router.get("/api/payments/notify", async (req, res) => {
+router.post("/api/payments/notify", async (req, res) => {
   console.log("notify url called");
-  console.log(req.body);
+  const { order_id, order_token } = req.body.data;
+
+  //find by paymentId
+  const payment = await Payment.findOne({
+    paymentId: order_id,
+  });
+
+  if (!payment) throw new BadRequestError("Invalid Request");
+
+  const resp = await axios.get(
+    `https://sandbox.cashfree.com/pg/orders/${order_id}`,
+    {
+      headers: {
+        Accept: "application/json",
+        "x-client-id": "67188ff09cd21cad81af6471288176",
+        "x-client-secret": "07c84e237e66cffca8878bca1da952993d0d8e72",
+        "x-api-version": "2021-05-21",
+      },
+    }
+  );
+
+  const { order_status } = resp.data;
+
+  if (order_status !== "PAID") throw new BadRequestError("Payment Cancelled");
+
+  await new PaymentCreatedPublisher(natsWrapper.client).publish({
+    id: payment.id,
+    orderId: payment.orderId,
+    paymentId: payment.paymentId,
+  });
+
+  return res.status(200).send("SUCCESS");
 });
 
 export { router as newRouter };
