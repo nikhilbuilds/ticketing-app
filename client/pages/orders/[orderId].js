@@ -11,10 +11,11 @@ const OrderShow = ({ order, currentUser }) => {
     body: {
       orderId: order.id,
     },
-    onSuccess: () => Router.push("/orders"),
+    onSuccess: (data) => Router.push(data),
   });
 
   useEffect(() => {
+    console.log(order);
     const findTimeLeft = () => {
       const msLeft = new Date(order.expiresAt) - new Date();
       setTimeLeft(Math.round(msLeft / 1000));
@@ -35,6 +36,9 @@ const OrderShow = ({ order, currentUser }) => {
   return (
     <div>
       Time left to pay: {timeLeft} seconds
+      <button class="btn btn-info" onClick={() => doRequest()}>
+        Pay
+      </button>
       {/* <StripeCheckout
         token={({ id }) => doRequest({ token: id })}
         stripeKey="pk_test_JMdyKVvf8EGTB0Fl28GsN7YY"
