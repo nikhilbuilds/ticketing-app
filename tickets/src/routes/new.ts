@@ -22,13 +22,15 @@ router.post(
   ],
   validateRequest,
   async (req: Request, res: Response) => {
-    const { title, price } = req.body;
+    const { title, price, location, description } = req.body;
 
     try {
       const ticket = Ticket.build({
         title,
         price,
         userId: req.user!.id,
+        location,
+        description,
       });
       await ticket.save();
 
@@ -38,6 +40,8 @@ router.post(
         price: ticket.price,
         userId: ticket.userId,
         version: ticket.version,
+        location: ticket.location,
+        description: ticket.description,
       });
 
       return res.status(201).send(ticket);

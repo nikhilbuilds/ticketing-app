@@ -34,8 +34,6 @@ router.post(
 
     const isReserved = await ticket.isReserved();
 
-    console.log(isReserved);
-
     if (isReserved) throw new BadRequestError("Ticket is already reserved");
 
     const expiration = new Date();
@@ -60,6 +58,7 @@ router.post(
       ticket: {
         id: ticket.id,
         price: ticket.price,
+        location: ticket.location,
       },
     });
 
