@@ -56,3 +56,11 @@ build:
         manual:
           - src: "src/**/*.ts"
             dest: .
+    - image: nikhilkhanna03/support
+      context: support
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .

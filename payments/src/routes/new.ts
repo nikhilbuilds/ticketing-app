@@ -14,7 +14,7 @@ import {
 import { Order } from "../models/Order";
 import { natsWrapper } from "../nats-wrapper";
 import { PaymentCreatedPublisher } from "../events/publishers/payment-created-publisher";
-
+import { SupportCreatedPublisher } from "../events/publishers/support-created-publisher";
 const router = express.Router();
 
 router.post(
@@ -25,6 +25,8 @@ router.post(
   async (req: Request, res: Response) => {
     const { orderId } = req.body;
     const order = await Order.findById(orderId);
+
+    console.log("user ========================", req.user);
 
     if (!order) throw new NotFoundError();
 
@@ -48,8 +50,8 @@ router.post(
       body: JSON.stringify({
         customer_details: {
           customer_id: "7112AAA812234",
-          customer_email: "john@cashfree.com",
-          customer_phone: "9908734801",
+          customer_email: req.user?.email,
+          customer_phone: req.user?.phone,
         },
         order_meta: {
           return_url:
@@ -87,7 +89,9 @@ router.post("/api/payments/notify", async (req, res) => {
   //find by paymentId
   const payment = await Payment.findOne({
     paymentId: order_id,
-  });
+  }).populate("orders");
+
+  console.log("payment ================>>===========>>", payment);
 
   if (!payment) throw new BadRequestError("Invalid Request");
 
@@ -103,7 +107,18 @@ router.post("/api/payments/notify", async (req, res) => {
     }
   );
 
-  const { order_status } = resp.data;
+  const { order_status, customer_details, order_amount } = resp.data;
+
+  let message: string = `Hi, Order amount: ${order_amount} has been paid successfully for order id: ${order_id}.`;
+
+  if (order_status !== "PAID")
+    message = `Sorry, your payment was not successful. Please try again. Order id: ${order_id}`;
+
+  new SupportCreatedPublisher(natsWrapper.client).publish({
+    customerEmail: customer_details.customer_email,
+    type: "EMAIL",
+    message: message,
+  });
 
   if (order_status !== "PAID") throw new BadRequestError("Payment Cancelled");
 

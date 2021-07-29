@@ -28,6 +28,7 @@ export async function signup(req: Request, res: Response) {
     {
       id: user.id,
       email: user.email,
+      phone: user.phone,
     },
     process.env.JWT_KEY as string
   );
@@ -60,6 +61,7 @@ export async function signin(req: Request, res: Response) {
     {
       id: existing.id,
       email: existing.email,
+      phone: user.phone,
     },
     process.env.JWT_KEY as string
   );
