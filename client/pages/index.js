@@ -54,7 +54,10 @@ const LandingPage = ({ currentUser, tickets }) => {
       <Link href="/tickets/[ticketId]" as={`/tickets/${search.id}`}>
         <li className="list-group-item">
           {search?.title}
-          <br /> <small className="text-muted">{search?.tags}</small>
+          <br />{" "}
+          <small className="text-muted">
+            {search?.tags.map((tag) => tag + " ")}
+          </small>
         </li>
       </Link>
     );

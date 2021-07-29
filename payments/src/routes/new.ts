@@ -42,14 +42,14 @@ router.post(
       method: "POST",
       headers: {
         Accept: "application/json",
-        "x-client-id": "67188ff09cd21cad81af6471288176",
-        "x-client-secret": "07c84e237e66cffca8878bca1da952993d0d8e72",
+        "x-client-id": process.env.CASHFREE_CLIENT_ID,
+        "x-client-secret": process.env.CASHFREE_CLIENT_SECRET,
         "x-api-version": "2021-05-21",
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
         customer_details: {
-          customer_id: "7112AAA812234",
+          customer_id: req.user?.id,
           customer_email: req.user?.email,
           customer_phone: req.user?.phone,
         },
@@ -100,8 +100,8 @@ router.post("/api/payments/notify", async (req, res) => {
     {
       headers: {
         Accept: "application/json",
-        "x-client-id": "67188ff09cd21cad81af6471288176",
-        "x-client-secret": "07c84e237e66cffca8878bca1da952993d0d8e72",
+        "x-client-id": process.env.CASHFREE_CLIENT_ID,
+        "x-client-secret": process.env.CASHFREE_CLIENT_SECRET,
         "x-api-version": "2021-05-21",
       },
     }

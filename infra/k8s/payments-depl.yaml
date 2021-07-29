@@ -31,6 +31,16 @@ spec:
                 secretKeyRef:
                   name: jwt-secret
                   key: JWT_KEY
+            - name: CASHFREE_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: cashfree-client-id
+                  key: CASHFREE_CLIENT_ID
+            - name: CASHFREE_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: cashfree-client-secret
+                  key: CASHFREE_CLIENT_SECRET
 ---
 apiVersion: v1
 kind: Service
