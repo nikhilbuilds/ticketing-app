@@ -147,5 +147,5 @@ it("user not authenticated", async () => {
 
   console.log(res.body);
 
-  expect(res.body.currentUser).toEqual(null);
+  expect(res.body.user).toEqual(null);
 });
