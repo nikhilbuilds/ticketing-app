@@ -16,6 +16,8 @@ const setup = async () => {
     id: mongoose.Types.ObjectId().toHexString(),
     title: "concert",
     price: 20,
+    location: "abcd",
+    description: "abcd",
   });
   await ticket.save();
   const order = Order.build({
