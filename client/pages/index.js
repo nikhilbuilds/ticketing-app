@@ -7,6 +7,10 @@ const LandingPage = ({ currentUser, tickets }) => {
   const [loading, setLoading] = useState(false);
   const [searchBar, setSearchBar] = useState("");
 
+  useEffect(() => {
+    setSearchValues([]);
+  }, []);
+
   const ticketList = tickets.map((ticket) => {
     return (
       <div className="col-sm-4 mb-4" key={ticket.id}>
@@ -26,7 +30,15 @@ const LandingPage = ({ currentUser, tickets }) => {
           <div className="card-footer">
             {ticket.tags.map((tag) => {
               return (
-                <button type="button" className="btn btn-sm btn-info m-1">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSearchValues([]);
+                    setSearchBar(tag);
+                    setSearch(tag);
+                  }}
+                  className="btn btn-sm btn-info m-1"
+                >
                   {tag}
                 </button>
               );
@@ -38,11 +50,19 @@ const LandingPage = ({ currentUser, tickets }) => {
   });
 
   const searchSection = searchValues?.map((search, i) => {
-    return <li className="list-group-item">{search?.title}</li>;
+    return (
+      <Link href="/tickets/[ticketId]" as={`/tickets/${search.id}`}>
+        <li className="list-group-item">
+          {search?.title}
+          <br /> <small className="text-muted">{search?.tags}</small>
+        </li>
+      </Link>
+    );
   });
 
   async function setSearch(e) {
-    const value = e.target.value;
+    const value = e;
+    setSearchValues([]);
     setSearchBar(value);
 
     console.log("notValue", !value);
@@ -56,19 +76,16 @@ const LandingPage = ({ currentUser, tickets }) => {
       const res = await axios.get(
         `/api/tickets/search/suggestions?searchString=${value}`
       );
-      if (res.data.total === 0) {
-        setSearchValues([]);
-        return setLoading(false);
-      }
 
       const newArr = [...searchValues];
 
-      console.log("hello =====>", searchBar);
+      console.log("hello =====>", res.data.results);
 
       for (let i = 0; i < res.data.total; i++) {
         newArr[i] = {
           title: res.data.results[i].title,
-          id: i,
+          id: res.data.results[i].id,
+          tags: res.data.results[i].tags,
         };
       }
 
@@ -108,12 +125,16 @@ const LandingPage = ({ currentUser, tickets }) => {
           onBlur={() => getSearch()}
           className="form-control rounded"
           placeholder="Search"
-          aria-label="Search"
-          name="search"
-          onChange={(e) => setSearch(e)}
+          name="ticketing_search"
+          onChange={(e) => setSearch(e.target.value)}
           aria-describedby="search-addon"
+          autoComplete="off"
         />
+        {/* <button className="btn btn-light" onClick={() => getSearch()}>
+          Clear
+        </button> */}
       </div>
+
       {searchValues.length > 0 && (
         <ul className="list-group">{searchSection}</ul>
       )}

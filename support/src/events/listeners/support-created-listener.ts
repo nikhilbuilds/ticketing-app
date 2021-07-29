@@ -17,13 +17,11 @@ export class SupportCreatedListener extends Listener<SupportCreatedEvent> {
       data
     );
     // send mail, basis on type..
-    //  html: "<strong>and easy to do anywhere, even with Node.js</strong>",
-    sgMail.setApiKey(
-      "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"
-    );
+    sgMail.setApiKey(process.env.SG_MAIL_KEY as string);
+    //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
     const sendData = {
-      to: data.customerEmail, // Change to your recipient
-      from: "alxnetwork.nikhil@gmail.com", // Change to your verified sender
+      to: data.customerEmail,
+      from: process.env.SG_SENDER_EMAIL as string,
       subject: "Payment",
       text: data.message,
     };

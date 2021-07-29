@@ -24,3 +24,13 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.name
+            - name: SG_MAIL_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: sg-mail-key
+                  key: SG_MAIL_KEY
+            - name: SG_SENDER_MAIL
+              valueFrom:
+                secretKeyRef:
+                  name: sg-sender-mail
+                  key: SG_SENDER_MAIL

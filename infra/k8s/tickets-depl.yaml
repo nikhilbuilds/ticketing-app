@@ -31,6 +31,22 @@ spec:
                 secretKeyRef:
                   name: jwt-secret
                   key: JWT_KEY
+            - name: ES_CLOUD_ID
+              valueFrom:
+                secretKeyRef:
+                  name: es-cloud-id
+                  key: ES_CLOUD_ID
+            - name: ES_AUTH_USER
+              valueFrom:
+                secretKeyRef:
+                  name: es-auth-user
+                  key: ES_AUTH_USER
+            - name: ES_AUTH_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: es-auth-password
+                  key: ES_AUTH_PASSWORD
+
 ---
 apiVersion: v1
 kind: Service

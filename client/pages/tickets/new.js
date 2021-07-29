@@ -92,9 +92,7 @@ const NewTicket = () => {
 
         <div className="form-group">
           <label className="mt-4">Tags &nbsp;</label>
-          <span className="text-muted">
-            (Eg: Sports, Football Match, Soccer)
-          </span>
+          <span className="text-muted">(Eg: Sports,Football,Match,Soccer)</span>
           <input
             value={tags}
             name="tags"

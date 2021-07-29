@@ -26,7 +26,7 @@ router.post(
   async (req: Request, res: Response) => {
     const { title, price, location, description, tags } = req.body;
 
-    const tagArr: [] = tags.split(",");
+    const tagArr: [] = tags.split(/[ ,]+/);
 
     try {
       const ticket = Ticket.build({
@@ -41,7 +41,7 @@ router.post(
 
       //send to elastic search
 
-      create(ticket.title, ticket?.tags || []);
+      create(ticket.id, ticket.title, ticket?.tags || []);
 
       new TicketCreatedPublisher(natsWrapper.client).publish({
         id: ticket.id,
