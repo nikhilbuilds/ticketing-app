@@ -7,6 +7,7 @@ interface TicketAttrs {
   userId: string;
   location: string;
   description: string;
+  tags?: [];
 }
 
 interface TicketDoc extends mongoose.Document {
@@ -17,6 +18,7 @@ interface TicketDoc extends mongoose.Document {
   orderId?: string;
   location: string;
   description: string;
+  tags?: [];
 }
 
 interface TicketModel extends mongoose.Model<TicketDoc> {
@@ -42,9 +44,13 @@ const ticketSchema = new mongoose.Schema(
     },
     location: {
       type: String,
+      required: true,
     },
     description: {
       type: String,
+    },
+    tags: {
+      type: Array,
     },
   },
   {

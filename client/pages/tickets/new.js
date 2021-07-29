@@ -8,10 +8,8 @@ const NewTicket = () => {
     price: "",
     location: "",
     description: "",
-    tags: [],
+    tags: "",
   });
-
-  const [tagVal, setTagVal] = useState("");
 
   const { title, price, location, description, tags } = value;
 
@@ -23,6 +21,7 @@ const NewTicket = () => {
       price,
       location,
       description,
+      tags,
     },
     onSuccess: () => Router.push("/"),
   });
@@ -37,11 +36,6 @@ const NewTicket = () => {
     setValue({ ...value, [e.target.name]: e.target.value });
   };
 
-  const setTags = (e) => {
-    // setValue({ ...value, tags: tags.concat(e.target.value) });\
-    setTagVal(e.target.value);
-  };
-
   const onBlur = () => {
     const priceValue = parseFloat(price);
 
@@ -54,8 +48,8 @@ const NewTicket = () => {
 
   return (
     <div>
+      <h1 className="display-3">Create a Ticket</h1>
       <form className="form-create" onSubmit={onSubmit}>
-        <h1 className="h3 mb-3 font-weight-normal">Create a Ticket</h1>
         <div className="form-group">
           <label className="mt-4">Title</label>
           <input
@@ -97,24 +91,16 @@ const NewTicket = () => {
         </div>
 
         <div className="form-group">
-          <label className="mt-4">Tags</label>
+          <label className="mt-4">Tags &nbsp;</label>
+          <span className="text-muted">
+            (Eg: Sports, Football Match, Soccer)
+          </span>
           <input
-            value={tagVal}
+            value={tags}
             name="tags"
-            onChange={(e) => setTags(e)}
+            onChange={(e) => setInput(e)}
             className="form-control"
           />
-          <button
-            onClick={() => setValue({ ...value, tags: [...tags, tagVal] })}
-            type="button"
-            className="btn btn-link"
-          >
-            ADD
-          </button>
-
-          {tags?.map((tag, idx) => (
-            <h2 key={idx}>{tag}</h2>
-          ))}
         </div>
         {errors}
         <button className="btn btn-primary mt-4">Submit</button>

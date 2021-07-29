@@ -1,14 +1,22 @@
 const OrderIndex = ({ orders }) => {
   return (
-    <ul>
-      {orders.map((order) => {
+    <>
+      <h1 className="display-3">My Orders</h1>
+      {orders?.map((order) => {
         return (
-          <li key={order.id}>
-            {order.ticket.title} - {order.status}
-          </li>
+          <div className="card text-light bg-secondary m-4">
+            <div className="card-header">OrderId: {order.id}</div>
+            <div className="card-body">
+              <h5 className="card-title">Event: {order.ticket.title}</h5>
+              <p className="card-text">Location: {order.ticket.location}</p>
+            </div>
+            <div className="card-footer">
+              <b>Status: {order.status}</b>
+            </div>
+          </div>
         );
       })}
-    </ul>
+    </>
   );
 };
 
