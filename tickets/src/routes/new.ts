@@ -8,6 +8,7 @@ import {
 import { Ticket } from "../models/ticketing";
 import { TicketCreatedPublisher } from "../events/publishers/ticket-created-publisher";
 import { natsWrapper } from "../nats-wrapper";
+import { create } from "../utils/create-elasticsearch";
 
 const router = express.Router();
 
@@ -39,6 +40,8 @@ router.post(
       await ticket.save();
 
       //send to elastic search
+
+      create(ticket.title, ticket?.tags || []);
 
       new TicketCreatedPublisher(natsWrapper.client).publish({
         id: ticket.id,
