@@ -14,6 +14,8 @@ const setup = async () => {
     title: "concert",
     price: 99,
     userId: "asdf",
+    location: "abcd",
+    description: "abcd",
   });
   await ticket.save();
 
@@ -27,6 +29,7 @@ const setup = async () => {
     ticket: {
       id: ticket.id,
       price: ticket.price,
+      location: ticket.location,
     },
   };
 

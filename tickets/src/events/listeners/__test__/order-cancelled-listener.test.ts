@@ -13,6 +13,8 @@ const setup = async () => {
     title: "concert",
     price: 20,
     userId: "asdf",
+    location: "abcd",
+    description: "abcd",
   });
   ticket.set({ orderId });
   await ticket.save();

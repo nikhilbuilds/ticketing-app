@@ -73,6 +73,8 @@ it("creates a ticket with valid inputs", async () => {
     .send({
       title: "abcd",
       price: 20,
+      location: "abcd",
+      description: "abcd",
     })
     .expect(201);
 
@@ -91,6 +93,8 @@ it("publishes an event", async () => {
     .send({
       title,
       price: 20,
+      location: "abcd",
+      description: "abcd",
     })
     .expect(201);
 

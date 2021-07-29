@@ -18,6 +18,8 @@ it("returns the ticket if the ticket is found", async () => {
     .send({
       title,
       price,
+      location: "abcd",
+      description: "abcd",
     })
     .expect(201);
 

@@ -33,6 +33,8 @@ it("returns a 401 if the user does not own the ticket", async () => {
     .send({
       title: "asldkfj",
       price: 20,
+      location: "abcd",
+      description: "abcd",
     });
 
   console.log(response.body);
@@ -43,6 +45,8 @@ it("returns a 401 if the user does not own the ticket", async () => {
     .send({
       title: "alskdjflskjdf",
       price: 1000,
+      location: "abcd",
+      description: "abcd",
     })
     .expect(401);
 });
@@ -86,6 +90,8 @@ it("updates the ticket provided valid inputs", async () => {
     .send({
       title: "asldkfj",
       price: 20,
+      location: "abcd",
+      description: "abcd",
     });
 
   await request(app)
@@ -94,6 +100,8 @@ it("updates the ticket provided valid inputs", async () => {
     .send({
       title: "new title",
       price: 100,
+      location: "abcd",
+      description: "abcd",
     })
     .expect(200);
 
@@ -114,6 +122,8 @@ it("publishes an event", async () => {
     .send({
       title: "asldkfj",
       price: 20,
+      location: "abcd",
+      description: "abcd",
     });
 
   await request(app)
@@ -122,6 +132,8 @@ it("publishes an event", async () => {
     .send({
       title: "new title",
       price: 100,
+      location: "abcd",
+      description: "abcd",
     })
     .expect(200);
 

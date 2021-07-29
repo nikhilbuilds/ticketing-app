@@ -5,6 +5,8 @@ import { app } from "../app";
 import jwt from "jsonwebtoken";
 
 jest.mock("../nats-wrapper");
+jest.mock("../elasticsearch");
+jest.mock("../utils/create-elasticsearch");
 
 declare global {
   namespace NodeJS {
