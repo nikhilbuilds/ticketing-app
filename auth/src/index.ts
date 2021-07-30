@@ -15,6 +15,10 @@ const start = async () => {
     console.error(err);
   }
 
+  app.get("/api/auth/test", (req, res) => {
+    res.send("This is a auth service");
+  });
+
   app.listen(process.env.AUTH_SERVICE_PORT, () => {
     console.log(
       "Auth-Service is running on port:" + process.env.AUTH_SERVICE_PORT
