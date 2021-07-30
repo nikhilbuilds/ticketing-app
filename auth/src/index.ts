@@ -16,7 +16,7 @@ const start = async () => {
   }
 
   app.get("/api/auth/test", (req, res) => {
-    res.send("This is a auth service- testing 3");
+    res.send("This is a auth service- testing 5");
   });
 
   app.listen(process.env.AUTH_SERVICE_PORT, () => {
