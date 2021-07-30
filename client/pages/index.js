@@ -119,7 +119,7 @@ const LandingPage = ({ currentUser, tickets }) => {
 
   return (
     <div className="text-light">
-      <h1 className="display-3 ">Tickets</h1>
+      <h1 className="display-3 ">Tickets -test</h1>
 
       <div className="input-group">
         <input
