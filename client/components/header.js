@@ -11,6 +11,14 @@ export default ({ currentUser }) => {
       label: "Github",
       href: "https://github.com/nikhil-web-dev/ticketing-app",
     },
+    {
+      label: "Documentation",
+      href: "https://docs.google.com/document/d/1K6H7cJf2meOdugvDHWsICZ9yJOS6ntolr2xVJNegxgg/edit?usp=sharing",
+    },
+    {
+      label: "devnikhil.com",
+      href: "https://devnikhil.com",
+    },
   ]
     .filter((linkConfig) => linkConfig)
     .map(({ label, href }) => {
