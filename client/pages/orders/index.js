@@ -1,4 +1,5 @@
 const OrderIndex = ({ orders }) => {
+  console.log(orders);
   return (
     <>
       <h1 className="display-3">My Orders</h1>

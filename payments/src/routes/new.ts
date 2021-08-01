@@ -109,7 +109,7 @@ router.post("/api/payments/notify", async (req, res) => {
 
   const { order_status, customer_details, order_amount } = resp.data;
 
-  let message: string = `Hi, Order amount: ${order_amount} has been paid successfully for order id: ${order_id}.`;
+  let message: string = `Hi, Order amount: ${order_amount} has been paid successfully for order id: ${payment.paymentId}.`;
 
   if (order_status !== "PAID")
     message = `Sorry, your payment was not successful. Please try again. Order id: ${order_id}`;

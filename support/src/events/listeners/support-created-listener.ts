@@ -16,12 +16,15 @@ export class SupportCreatedListener extends Listener<SupportCreatedEvent> {
       "SUPPORT__LISTENER_SERVICE=================================>",
       data
     );
+
+    console.log(process.env.SG_MAIL_KEY, process.env.SG_SENDER_MAIL);
+
     // send mail, basis on type..
     sgMail.setApiKey(process.env.SG_MAIL_KEY as string);
     //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
     const sendData = {
       to: data.customerEmail,
-      from: process.env.SG_SENDER_EMAIL as string,
+      from: process.env.SG_SENDER_MAIL as string,
       subject: "Payment",
       text: data.message,
     };
@@ -31,7 +34,7 @@ export class SupportCreatedListener extends Listener<SupportCreatedEvent> {
         console.log("Email sent");
       })
       .catch((error) => {
-        console.error(error);
+        console.error(JSON.stringify(error));
       });
     msg.ack();
   }
