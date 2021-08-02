@@ -26,7 +26,7 @@ router.post(
   async (req: Request, res: Response) => {
     const { title, price, location, description, tags } = req.body;
 
-    const tagArr: [] = tags.split(/[ ,]+/);
+    const tagArr: [] = tags?.split(/[ ,]+/);
 
     try {
       const ticket = Ticket.build({
