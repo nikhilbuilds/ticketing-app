@@ -11,7 +11,7 @@ const LandingPage = ({ currentUser, tickets }) => {
     setSearchValues([]);
   }, []);
 
-  const ticketList = tickets.map((ticket) => {
+  const ticketList = tickets?.map((ticket) => {
     return (
       <div className="col-sm-4 mb-4" key={ticket.id}>
         <div className="card  bg-secondary">
@@ -119,7 +119,7 @@ const LandingPage = ({ currentUser, tickets }) => {
 
   return (
     <div className="text-light">
-      <h1 className="display-3 ">Tickets -test</h1>
+      <h1 className="display-3 ">Tickets</h1>
 
       <div className="input-group">
         <input
