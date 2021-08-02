@@ -45,6 +45,10 @@ spec:
                 name: client-srv
                 port:
                   number: 3000
+  tls:
+    - hosts:
+        - www.ticketing.devnikhil.com
+      secretName: first-tls
 ---
 apiVersion: v1
 kind: Service

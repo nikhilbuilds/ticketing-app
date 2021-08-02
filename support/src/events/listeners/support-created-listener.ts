@@ -32,9 +32,11 @@ export class SupportCreatedListener extends Listener<SupportCreatedEvent> {
       .send(sendData)
       .then(() => {
         console.log("Email sent");
+        return msg.ack();
       })
       .catch((error) => {
         console.error(JSON.stringify(error));
+        return msg.ack();
       });
     msg.ack();
   }
