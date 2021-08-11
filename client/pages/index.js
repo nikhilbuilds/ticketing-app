@@ -51,12 +51,12 @@ const LandingPage = ({ currentUser, tickets }) => {
 
   const searchSection = searchValues?.map((search, i) => {
     return (
-      <Link href="/tickets/[ticketId]" as={`/tickets/${search.id}`}>
+      <Link href="/tickets/[ticketId]" as={`/tickets/${search?.id}`}>
         <li className="list-group-item">
           {search?.title}
-          <br />{" "}
+          <br />
           <small className="text-muted">
-            {search?.tags.map((tag) => tag + " ")}
+            {search?.tags?.map((tag) => tag + " ")}
           </small>
         </li>
       </Link>
@@ -64,25 +64,24 @@ const LandingPage = ({ currentUser, tickets }) => {
   });
 
   async function setSearch(e) {
-    const value = e;
-    setSearchValues([]);
-    setSearchBar(value);
+    const value = e.target.value;
 
-    console.log("notValue", !value);
-
-    if (!value) {
+    if (value === " " || value.length <= 0) {
+      e.preventDefault();
       setSearchValues([]);
-      return setLoading(false);
+      return setSearchBar("");
     }
+
+    setSearchBar(value);
 
     try {
       const res = await axios.get(
         `/api/tickets/search/suggestions?searchString=${value}`
       );
 
-      const newArr = [...searchValues];
+      const newArr = [];
 
-      console.log("hello =====>", res.data.results);
+      console.log("hello =====>", res.data);
 
       for (let i = 0; i < res.data.total; i++) {
         newArr[i] = {
@@ -91,6 +90,8 @@ const LandingPage = ({ currentUser, tickets }) => {
           tags: res.data.results[i].tags,
         };
       }
+
+      console.log("newArr", newArr);
 
       setSearchValues(newArr);
 
@@ -125,11 +126,10 @@ const LandingPage = ({ currentUser, tickets }) => {
         <input
           type="search"
           value={searchBar}
-          onBlur={() => getSearch()}
           className="form-control rounded"
           placeholder="Search"
           name="ticketing_search"
-          onChange={(e) => setSearch(e.target.value)}
+          onChange={(e) => setSearch(e)}
           aria-describedby="search-addon"
           autoComplete="off"
         />

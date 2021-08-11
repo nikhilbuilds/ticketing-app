@@ -18,6 +18,8 @@ spec:
           env:
             - name: NATS_URL
               value: http://nats-srv:4222
+            - name: ES_URL
+              value: http://elasticsearch-loadbalancer:9200
             - name: NATS_CLUSTER_ID
               value: ticketing
             - name: NATS_CLIENT_ID

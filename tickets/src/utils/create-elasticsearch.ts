@@ -3,7 +3,7 @@ import { ElasticSearchConnection } from "../elasticsearch";
 export async function create(id: string, title: string, tagArr: []) {
   const client = await new ElasticSearchConnection().getConnection();
   //save ticket id also
-  await client.index({
+  const data = await client.index({
     index: "ticketing",
     id: id,
     body: {
@@ -32,11 +32,16 @@ export async function getSearchSuggestions(searchString: string) {
     });
 
     const hits = body.hits.hits;
+
     hits.map((item: any) => {
       results.push(item._source);
     });
 
-    return { results: results, total: body.hits.total.value };
+    console.log(body.hits.total);
+
+    console.log("results", results);
+
+    return { results: results, total: body.hits.total };
   } catch (err) {
     console.log(err);
     return;
