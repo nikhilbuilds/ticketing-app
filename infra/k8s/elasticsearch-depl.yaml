@@ -19,9 +19,12 @@ metadata:
   name: esnode
 spec:
   serviceName: elasticsearch
-  replicas: 2
+  replicas: 1
   updateStrategy:
     type: RollingUpdate
+  selector:
+    matchLabels:
+      app: es-cluster
   template:
     metadata:
       labels:
