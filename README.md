@@ -25,6 +25,6 @@ A full stack application, where any customer can create, sell or purchase the ti
 <p float="left">
 
 <figure class="image">
-  <img src="/app-images/web-1.png" height="20%" width="20%" >
-  <figcaption>Web-Login</figcaption>
+  <img src="/app-images/ticket-1.png" height="50%" width="50%" >
+ 
 </figure>
