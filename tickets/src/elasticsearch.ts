@@ -8,7 +8,7 @@ export class ElasticSearchConnection {
   async getConnection() {
     if (!this._connection) {
       this._connection = new Client({
-        node: "http://elasticsearch-loadbalancer:9200",
+        node: process.env.ES_URL,
       });
     }
     return this._connection;

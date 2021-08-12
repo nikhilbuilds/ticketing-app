@@ -1,5 +1,4 @@
 import express from "express";
-import { app } from "../app";
 import { Ticket } from "../models/ticketing";
 import { getSearchSuggestions } from "../utils/create-elasticsearch";
 

@@ -1,10 +1,6 @@
 import express, { Request, Response } from "express";
 import { body } from "express-validator";
-import {
-  currentUser,
-  requireAuth,
-  validateRequest,
-} from "@nk-ticketing-app/common";
+import { requireAuth, validateRequest } from "@nk-ticketing-app/common";
 import { Ticket } from "../models/ticketing";
 import { TicketCreatedPublisher } from "../events/publishers/ticket-created-publisher";
 import { natsWrapper } from "../nats-wrapper";
