@@ -54,7 +54,8 @@ router.post(
           customer_phone: req.user?.phone,
         },
         order_meta: {
-          return_url: "https://www.ticketing.devnikhil.com/orders",
+          return_url:
+            "https://www.ticketing.devnikhil.com/orders?order_id={order_id}&order_token={order_token}",
           notify_url: "https://www.ticketing.devnikhil.com/api/payments/notify",
         },
         order_amount: order.price,
