@@ -1,6 +1,9 @@
 import Link from "next/link";
+import { useState } from "react";
 
 export default ({ currentUser }) => {
+  const [showNav, setNav] = usestate(false);
+
   const links = [
     !currentUser && { label: "Sign Up", href: "/auth/signup" },
     !currentUser && { label: "Sign In", href: "/auth/signin" },
@@ -34,13 +37,14 @@ export default ({ currentUser }) => {
   return (
     <nav className="container navbar navbar-expand-lg navbar-dark bg-dark mb-5 justify-content-center align-items-center">
       <button
-        className="navbar-toggler"
+        className={`navbar-toggler ${!showNav && "collapsed"} `}
         type="button"
         data-toggle="collapse"
         data-target="#navbarTogglerDemo03"
         aria-controls="navbarTogglerDemo03"
-        aria-expanded="false"
+        aria-expanded={showNav}
         aria-label="Toggle navigation"
+        onClick={() => setNav(!showNav)}
       >
         <span className="navbar-toggler-icon"></span>
       </button>
@@ -50,7 +54,10 @@ export default ({ currentUser }) => {
         </a>
       </Link>
 
-      <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
+      <div
+        className={`collapse navbar-collapse ${showNav && "show"}`}
+        id="navbarTogglerDemo03"
+      >
         <ul className="navbar-nav mr-auto mt-2 mt-lg-0">{links}</ul>
         {/* <form className="form-inline my-2 my-lg-0">
           <input
