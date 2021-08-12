@@ -22,9 +22,20 @@ A full stack application, where any customer can create, sell or purchase the ti
 
 
 ## App Images
-<p float="left">
 
 <figure class="image">
   <img src="/app-images/ticket-1.png" height="50%" width="50%" >
- 
+</figure>
+  
+  <figure class="image">
+  <img src="/app-images/ticket-2.png" height="50%" width="50%" >
+</figure>
+
+  <figure class="image">
+  <img src="/app-images/ticket-3.png" height="50%" width="50%" >
+</figure>
+
+
+  <figure class="image">
+  <img src="/app-images/ticket-4.png" height="50%" width="50%" >
 </figure>
