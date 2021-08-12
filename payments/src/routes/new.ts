@@ -54,9 +54,8 @@ router.post(
           customer_phone: req.user?.phone,
         },
         order_meta: {
-          return_url:
-            "https://ww.ticketing.devnikhil.com/orders?order_id={order_id}&order_token={order_token}",
-          notify_url: "https://ww.ticketing.devnikhil.com/api/payments/notify",
+          return_url: "https://www.ticketing.devnikhil.com/orders",
+          notify_url: "https://www.ticketing.devnikhil.com/api/payments/notify",
         },
         order_amount: order.price,
         order_currency: "INR",
@@ -85,6 +84,8 @@ router.post(
 router.post("/api/payments/notify", async (req, res) => {
   console.log("notify url called");
   const { order_id, order_token } = req.body.data;
+
+  console.log(req.body);
 
   //find by paymentId
   const payment = await Payment.findOne({
