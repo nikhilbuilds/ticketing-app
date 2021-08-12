@@ -19,7 +19,9 @@ const LandingPage = ({ currentUser, tickets }) => {
             <h4 className="card-title">{ticket.title}</h4>
 
             <p className="card-text">{ticket?.location}</p>
-            <p className="card-text">{ticket?.description}</p>
+            <p className="card-text ticket-description">
+              {ticket?.description}
+            </p>
 
             <h5>₹{ticket?.price}</h5>
             <Link href="/tickets/[ticketId]" as={`/tickets/${ticket.id}`}>
