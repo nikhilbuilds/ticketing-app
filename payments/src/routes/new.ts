@@ -55,8 +55,8 @@ router.post(
         },
         order_meta: {
           return_url:
-            "https://ticketing.dev/orders?order_id={order_id}&order_token={order_token}",
-          notify_url: "https://ticketing.dev/api/payments/notify",
+            "https://ww.ticketing.devnikhil.com/orders?order_id={order_id}&order_token={order_token}",
+          notify_url: "https://ww.ticketing.devnikhil.com/api/payments/notify",
         },
         order_amount: order.price,
         order_currency: "INR",
