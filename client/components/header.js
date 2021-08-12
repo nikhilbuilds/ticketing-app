@@ -2,32 +2,39 @@ import Link from "next/link";
 import { useState } from "react";
 
 export default ({ currentUser }) => {
-  const [showNav, setNav] = usestate(false);
+  const [showNav, setNav] = useState(false);
 
   const links = [
-    !currentUser && { label: "Sign Up", href: "/auth/signup" },
-    !currentUser && { label: "Sign In", href: "/auth/signin" },
-    currentUser && { label: "Sell Tickets", href: "/tickets/new" },
-    currentUser && { label: "My Orders", href: "/orders" },
-    currentUser && { label: "Sign Out", href: "/auth/signout" },
+    !currentUser && { label: "Sign Up", href: "/auth/signup", isNew: false },
+    !currentUser && { label: "Sign In", href: "/auth/signin", isNew: false },
+    currentUser && {
+      label: "Sell Tickets",
+      href: "/tickets/new",
+      isNew: false,
+    },
+    currentUser && { label: "My Orders", href: "/orders", isNew: false },
+    currentUser && { label: "Sign Out", href: "/auth/signout", isNew: false },
     {
       label: "Github",
       href: "https://github.com/nikhil-web-dev/ticketing-app",
+      isNew: true,
     },
     {
       label: "Documentation",
       href: "https://docs.google.com/document/d/1K6H7cJf2meOdugvDHWsICZ9yJOS6ntolr2xVJNegxgg/edit?usp=sharing",
+      isNew: true,
     },
     {
       label: "devnikhil.com",
       href: "https://devnikhil.com",
+      isNew: true,
     },
   ]
     .filter((linkConfig) => linkConfig)
-    .map(({ label, href }) => {
+    .map(({ label, href, isNew }) => {
       return (
         <li key={href} className="nav-item">
-          <Link href={href}>
+          <Link href={href} target={isNew && "_blank"}>
             <a className="nav-link">{label}</a>
           </Link>
         </li>
