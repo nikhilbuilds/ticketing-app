@@ -9,6 +9,8 @@ const start = async () => {
   if (!process.env.NATS_CLIENT_ID) throw new Error("MONGO_URI must be defined");
   if (!process.env.NATS_URL) throw new Error("MONGO_URI must be defined");
 
+  console.log("Support is up");
+
   try {
     await natsWrapper.connect(
       process.env.NATS_CLUSTER_ID,
