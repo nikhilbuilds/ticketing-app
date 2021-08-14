@@ -5,6 +5,7 @@ A full stack application, where any customer can create, sell or purchase the ti
 - API: ExpressJs
 - UI: React and NextJs
 - Database: MongoDB
+- Search Engine: Elasticsearch
 - Deployed: Digital Ocean Kubernetes cluster.
 
 ## API Services
