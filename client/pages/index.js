@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 const LandingPage = ({ currentUser, tickets }) => {
   const [searchValues, setSearchValues] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [searchBar, setSearchBar] = useState(null);
+  const [searchBar, setSearchBar] = useState("");
 
   useEffect(() => {
     setSearchValues([]);
@@ -36,7 +36,7 @@ const LandingPage = ({ currentUser, tickets }) => {
                   type="button"
                   onClick={() => {
                     setSearchValues([]);
-                    setSearch(tag);
+                    getFromTag(tag);
                   }}
                   className="btn btn-sm btn-info m-1"
                 >
@@ -94,6 +94,30 @@ const LandingPage = ({ currentUser, tickets }) => {
       }
 
       console.log("newArr", newArr);
+
+      setSearchValues(newArr);
+
+      return setLoading(false);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async function getFromTag(value) {
+    try {
+      const res = await axios.get(
+        `/api/tickets/search/suggestions?searchString=${value}`
+      );
+
+      const newArr = [];
+
+      for (let i = 0; i < res.data.total; i++) {
+        newArr[i] = {
+          title: res.data.results[i].title,
+          id: res.data.results[i].id,
+          tags: res.data.results[i].tags,
+        };
+      }
 
       setSearchValues(newArr);
 
