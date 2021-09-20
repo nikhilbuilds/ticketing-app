@@ -10,18 +10,18 @@ spec:
     - host: www.ticketing.devnikhil.com
       http:
         paths:
-          - path: /api/payments/?(.*)
-            pathType: Prefix
-            backend:
-              service:
-                name: payments-srv
-                port:
-                  number: 4000
           - path: /api/users/?(.*)
             pathType: Prefix
             backend:
               service:
                 name: auth-srv
+                port:
+                  number: 4000
+          - path: /api/payments/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: payments-srv
                 port:
                   number: 4000
           - path: /api/tickets/?(.*)
