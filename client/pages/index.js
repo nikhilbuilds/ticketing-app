@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 const LandingPage = ({ currentUser, tickets }) => {
   const [searchValues, setSearchValues] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [searchBar, setSearchBar] = useState("");
+  const [searchBar, setSearchBar] = useState(null);
 
   useEffect(() => {
     setSearchValues([]);
@@ -36,7 +36,6 @@ const LandingPage = ({ currentUser, tickets }) => {
                   type="button"
                   onClick={() => {
                     setSearchValues([]);
-                    setSearchBar(tag.toString());
                     setSearch(tag);
                   }}
                   className="btn btn-sm btn-info m-1"
