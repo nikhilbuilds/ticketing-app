@@ -66,7 +66,7 @@ const LandingPage = ({ currentUser, tickets }) => {
   });
 
   async function setSearch(e) {
-    const value = e.target.value;
+    const value = e?.target?.value || e;
 
     if (value === " " || value.length <= 0) {
       e.preventDefault();
@@ -122,7 +122,7 @@ const LandingPage = ({ currentUser, tickets }) => {
 
   return (
     <div className="text-light">
-      <h1 className="display-3 ">Tickets Updated on 20th Sep 2021</h1>
+      <h1 className="display-3 ">Tickets</h1>
 
       <div className="input-group">
         <input
