@@ -51,6 +51,7 @@ const LandingPage = ({ currentUser, tickets }) => {
   });
 
   const searchSection = searchValues?.map((search, i) => {
+    console.log("SearchValues:", searchValues);
     return (
       <Link href="/tickets/[ticketId]" as={`/tickets/${search?.id}`} key={i}>
         <li className="list-group-item">
@@ -65,13 +66,15 @@ const LandingPage = ({ currentUser, tickets }) => {
   });
 
   async function setSearch(e) {
-    console.log(e);
-    const value = e?.target.value || e;
+    const value = e.target.value;
+
+    console.log("value==============================>", value);
 
     if (value === " " || value.length <= 0) {
       e.preventDefault();
-      setSearchValues([]);
-      return setSearchBar("");
+
+      setSearchBar("");
+      return setSearchValues([]);
     }
 
     setSearchBar(value);
@@ -105,6 +108,8 @@ const LandingPage = ({ currentUser, tickets }) => {
 
   async function getFromTag(value) {
     try {
+      setSearchBar(value);
+
       const res = await axios.get(
         `/api/tickets/search/suggestions?searchString=${value}`
       );
