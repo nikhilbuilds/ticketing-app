@@ -5,6 +5,7 @@ A full stack application, where any customer can create, sell or purchase the ti
 - API: ExpressJs
 - UI: React and NextJs
 - Database: MongoDB
+- Search Engine: Elasticsearch
 - Deployed: Digital Ocean Kubernetes cluster.
 
 ## API Services
@@ -22,9 +23,20 @@ A full stack application, where any customer can create, sell or purchase the ti
 
 
 ## App Images
-<p float="left">
 
 <figure class="image">
-  <img src="/app-images/web-1.png" height="20%" width="20%" >
-  <figcaption>Web-Login</figcaption>
+  <img src="/app-images/ticket-1.png" height="50%" width="50%" >
+</figure>
+  
+  <figure class="image">
+  <img src="/app-images/ticket-2.png" height="50%" width="50%" >
+</figure>
+
+  <figure class="image">
+  <img src="/app-images/ticket-3.png" height="50%" width="50%" >
+</figure>
+
+
+  <figure class="image">
+  <img src="/app-images/ticket-4.png" height="50%" width="50%" >
 </figure>
