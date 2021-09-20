@@ -36,7 +36,7 @@ const LandingPage = ({ currentUser, tickets }) => {
                   type="button"
                   onClick={() => {
                     setSearchValues([]);
-                    setSearchBar(tag);
+                    setSearchBar(tag.toString());
                     setSearch(tag);
                   }}
                   className="btn btn-sm btn-info m-1"

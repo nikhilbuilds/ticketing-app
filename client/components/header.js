@@ -26,7 +26,7 @@ export default ({ currentUser }) => {
     },
     {
       label: "devnikhil.com",
-      href: "https://devnikhil.com",
+      href: "https://www.devnikhil.com",
       isNew: true,
     },
   ]
