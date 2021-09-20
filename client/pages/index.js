@@ -52,7 +52,7 @@ const LandingPage = ({ currentUser, tickets }) => {
 
   const searchSection = searchValues?.map((search, i) => {
     return (
-      <Link href="/tickets/[ticketId]" as={`/tickets/${search?.id}`}>
+      <Link href="/tickets/[ticketId]" as={`/tickets/${search?.id}`} key={i}>
         <li className="list-group-item">
           {search?.title}
           <br />
@@ -65,7 +65,8 @@ const LandingPage = ({ currentUser, tickets }) => {
   });
 
   async function setSearch(e) {
-    const value = e?.target?.value || e;
+    console.log(e);
+    const value = e?.target.value || e;
 
     if (value === " " || value.length <= 0) {
       e.preventDefault();
